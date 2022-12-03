@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    { common_head } 
+    <link rel="stylesheet" href="../css/pages/rented.css">
+    <title>My rent | Mattia Prà - Autonoleggio</title>
+</head>
+<body class="rented not_home">
+    { cookie_banner }
+    { header }
+<main>
+    <alternative>
+      <static>
+        <article class="no_rent_given">
+          { error }
+          <form action="rented.php" method="GET">
+            { should_ask_email }
+            <div class="input_wrapper">
+              <label for="rent_code">Rent code</label>
+              <input type="text" id="rent_code" name="rent" minlength="1" maxlength="6" required >
+            </div>
+            <div class="request_form_wrapper link_to_page">
+              <button type="submit" class="primary_btn">Find my rent</button>
+              <p class="link_to_page">
+                <a href="../contact.php">Having problems? <span class="link bold">Contact us!</span></a>
+              </p>
+            </div>
+          </form>
+        </article>
+      </static>
+      <dynamic>
+        <h1>Thank you, { rent_user }</h1>
+        { common_user }
+        <section class="rented">
+          <aside class="container information_box">
+            <figure>
+              <img src="{ img1 }" alt="">
+            </figure>
+            <div class="success_container">
+              <figure class="success_icon">
+                <img src="../img/icons/{ rent_state }.svg" alt="{ rent_state }">
+              </figure>
+              <div class="success_p_container">
+                { rent_message }
+              </div>
+            </div>
+          </aside>
+          <article class="container qrcode">
+            <h2>
+              Fast pickup
+            </h2>
+            <figure>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data={ qr_code }" alt="QR Code">
+            </figure>
+            <p>
+              Your rent has the code: <span class="bold">{ rent_id }</span>
+            </p>
+            <p>
+              Show this QR Code to the officer when you arrive to the pickup point
+            </p>
+            <a class="bold" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data={ qr_code }" download>Download code</a>
+          </article>
+        </section>
+      </dynamic>
+    </alternative>
+</main>
+{ footer }
+</body>
+</html>
